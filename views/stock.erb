@@ -1,0 +1,20 @@
+<div id="main">
+
+<div id="form_box">
+<form action="/stock" method="get">
+  <input type="text" name="ticker">
+  <button>Get quote</button>
+</form>
+</div>
+
+<div id="results">
+  <div id="ticker">
+    <%= @ticker %>
+  </div>
+
+  <div id="price">
+    $<%= @price.round(2) %>
+  </div>
+</div>
+
+</div>

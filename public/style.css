@@ -1,0 +1,29 @@
+header {
+  font-size: 100px;
+  margin-bottom: 40px;
+}
+
+#form_box {
+  position: absolute;
+  height: 200px;
+  width: 300px;
+  background-color: lightblue;
+  opacity: 0.7;
+}
+
+#results {
+  position: absolute;
+  margin-top: 30px
+}
+#main {
+  width: 960px;
+  margin-left: 100px;
+}
+
+#ticker {
+  font-size: 50px;
+}
+
+#price {
+  font-size: 80px
+}
