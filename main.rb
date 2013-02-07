@@ -5,11 +5,7 @@ require 'sinatra/reloader' if development?
 require 'active_support/all'
 
 get '/' do
-  if @ticker = params[:ticker].blank?
-      @ticker = "AAPL"
-    else
-      @ticker = params[:ticker]
-  end
+  params[:ticker].blank? ? @ticker = "AAPL" : @ticker = params[:ticker]
 
       begin
         @quote = YahooFinance::get_quotes(YahooFinance::StandardQuote, @ticker)[@ticker]
