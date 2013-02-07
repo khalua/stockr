@@ -2,20 +2,24 @@ require 'pry'
 require 'yahoofinance'
 require 'sinatra'
 require 'sinatra/reloader' if development?
+require 'active_support/all'
 
-get '/stock' do
-    @ticker = params[:ticker]
+get '/' do
+  if @ticker = params[:ticker].blank?
+      @ticker = "AAPL"
+    else
+      @ticker = params[:ticker]
+  end
 
-    def get_quote(ticker)
-        begin
-          YahooFinance::get_quotes(YahooFinance::StandardQuote, ticker)[ticker].lastTrade
-        rescue
-          puts "Oh oh. Yahoo is out to lunch"
-        end
-    end
+      begin
+        @quote = YahooFinance::get_quotes(YahooFinance::StandardQuote, @ticker)[@ticker]
+      rescue
+        puts "Oh oh. Yahoo is out to lunch"
+      end
 
-    @price = get_quote(@ticker)
+    @price = @quote.lastTrade
+    @name = @quote.name
+
     erb :stock
-
 
 end
